@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+
+.sand-yellow{
+  --tw-text-opacity: 1;
+  color: rgba(234, 227, 110, var(--tw-text-opacity));
+}
+
+.blue-gray{
+  --tw-text-opacity: 1;
+  color: rgba(227, 236, 241, var(--tw-text-opacity));
+}
+
+.gun-metal{
+  --tw-text-opacity: 1;
+  color: rgba(70, 85, 95, var(--tw-text-opacity));
+}

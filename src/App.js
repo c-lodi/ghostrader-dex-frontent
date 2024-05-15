@@ -1,23 +1,36 @@
-import logo from './logo.svg';
+import Header from './components/Header';
 import './App.css';
+import Swap from './components/Swap';
+import Tokens from './components/Tokens';
+import Liquidity from './components/Liquidity';
+import Footer from './components/Footer';
+import { Routes, Route } from "react-router-dom";
+import { useConnect, useAccount } from "wagmi";
+import { MetaMaskConnector } from "wagmi/connectors/metaMask";
+
 
 function App() {
+
+  const { address, isConnected } = useAccount();
+  const { connect } = useConnect ({
+    connector: new MetaMaskConnector(),
+  }); 
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <Header connect={connect} isConnected={isConnected} address={address} />
+      <Routes>
+          <Route path="/" element={<Swap isConnected={isConnected} address={address} />} />
+          <Route path="/tokens" element={<Tokens />} />
+          <Route path="/liquidity" element={<Liquidity />} />
+
+
+        </Routes>
+        <Footer />
+       
+       
+  
     </div>
   );
 }
